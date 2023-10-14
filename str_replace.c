@@ -19,9 +19,17 @@ void str_replace(char**str, char*search, char*replace) {
     size_t search_len = strlen(search);
     char *new_str = NULL;
     char *str_copy = calloc(len, sizeof(char));
+    if(str_copy == NULL) {
+        printf("Could not allocate memory in str_replace\n");
+        exit(1);
+    }
     strcpy(str_copy, *str);
     for (int i = 0; i < len; ++i) {
         char *ch = malloc(sizeof(char)+1);
+        if(ch == NULL) {
+            printf("Could not allocate memory in str_replace\n");
+            exit(1);
+        }
         *ch = str_copy[i];
 
         if(str_copy[i] == search[0]) {
